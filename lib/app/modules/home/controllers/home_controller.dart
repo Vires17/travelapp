@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_final_fields
 import 'package:get/get.dart';
+import 'package:travelapp/app/data/helpers/storage_helper.dart';
+import 'package:travelapp/app/data/models/user.dart';
 
 class HomeController extends GetxController {
   RxList<String> _addressList =
@@ -16,8 +18,10 @@ class HomeController extends GetxController {
   set selectedDate(value) => _selectedDate.value = value;
 
   Future loadData() async {
-    // Load data from API
+    User user = await StorageHelper.getUserFromStorage();
+    print(user.email);
   }
+
   @override
   void onInit() async {
     await loadData();

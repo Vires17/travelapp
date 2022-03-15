@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:travelapp/app/data/constants.dart';
+import 'package:travelapp/app/data/helpers/storage_helper.dart';
+import 'package:travelapp/app/data/repository/user.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
+import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
   final GlobalKey<FormState> signupFormKey = new GlobalKey<FormState>();
@@ -37,18 +43,22 @@ class LoginController extends GetxController {
     return null;
   }
 
-  void checkLogin() {
+  void checkLogin() async {
     final isValid = signupFormKey.currentState!.validate();
     if (!isValid) {
-      // Get.snackbar(
-      //   "Thất bại",
-      //   "Đăng ký thất bại.",
-      //   snackPosition: SnackPosition.BOTTOM,
-      // );
       return;
     }
     signupFormKey.currentState!.save();
-    Get.offAllNamed(Routes.HOME);
+    bool isLogin = await UserRepository.loginUser(email, password);
+    if (isLogin) {
+      Get.offAllNamed(Routes.HOME);
+    } else {
+      Get.snackbar(
+        "Thất bại",
+        "Đăng nhập thất bại.",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 
   Future loadData() async {

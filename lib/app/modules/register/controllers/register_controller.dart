@@ -1,6 +1,13 @@
+// ignore_for_file: prefer_final_fields
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelapp/app/data/constants.dart';
+import 'package:travelapp/app/data/models/user.dart';
+import 'package:travelapp/app/data/repository/user.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterController extends GetxController {
   final GlobalKey<FormState> signupFormKey = new GlobalKey<FormState>();
@@ -76,18 +83,34 @@ class RegisterController extends GetxController {
     return null;
   }
 
-  void checkSignUp() {
+  void checkSignUp() async {
     final isValid = signupFormKey.currentState!.validate();
     if (!isValid) {
-      // Get.snackbar(
-      //   "Thất bại",
-      //   "Đăng ký thất bại.",
-      //   snackPosition: SnackPosition.BOTTOM,
-      // );
       return;
     }
     signupFormKey.currentState!.save();
-    Get.toNamed(Routes.LOGIN);
+    bool isCreated =
+        await UserRepository.createUser(name, email, phone, password);
+
+    if (isCreated) {
+      bool isLogin = await UserRepository.loginUser(email, password);
+      if (isLogin) {
+        Get.offAllNamed(Routes.HOME);
+      } else {
+        Get.snackbar(
+          "Thất bại",
+          "Đăng nhập thất bại.",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } else {
+      Get.snackbar(
+        "Thất bại",
+        "Đăng ký thất bại.",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+    // Get.toNamed(Routes.LOGIN);
   }
 
   Future loadData() async {

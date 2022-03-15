@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/DatePickerCustom.dart';
 import 'package:travelapp/app/components/dropdown.dart';
+import 'package:travelapp/app/data/helpers/storage_helper.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
@@ -93,6 +94,27 @@ class HomeView extends GetView<HomeController> {
                       },
                       child: Text(
                         "TÌM",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(200, 20),
+                        primary: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                      ),
+                      onPressed: () async {
+                        await StorageHelper.clearAll();
+                        Get.offAllNamed(Routes.LOGIN);
+                      },
+                      child: Text(
+                        "Đăng xuất",
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
