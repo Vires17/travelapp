@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:travelapp/app/data/helpers/validations.dart';
 
 import '../controllers/register_controller.dart';
 
@@ -77,7 +78,7 @@ class RegisterView extends GetView<RegisterController> {
           controller.name = value!;
         },
         validator: (value) {
-          return controller.validateName(value!);
+          return Validations.validateName(value!);
         },
       ),
     );
@@ -97,7 +98,7 @@ class RegisterView extends GetView<RegisterController> {
           controller.phone = value!;
         },
         validator: (value) {
-          return controller.validatePhone(value!);
+          return Validations.validatePhone(value!);
         },
       ),
     );
@@ -117,7 +118,7 @@ class RegisterView extends GetView<RegisterController> {
           controller.email = value!;
         },
         validator: (value) {
-          return controller.validateEmail(value!);
+          return Validations.validateEmail(value!);
         },
       ),
     );
@@ -144,7 +145,7 @@ class RegisterView extends GetView<RegisterController> {
                   controller.password = value!;
                 },
                 validator: (value) {
-                  return controller.validatePassword(value!);
+                  return Validations.validatePassword(value!);
                 },
               ),
               GestureDetector(
@@ -183,7 +184,8 @@ class RegisterView extends GetView<RegisterController> {
               controller.confirmPassword = value!;
             },
             validator: (value) {
-              return controller.validateConfirmPassword(value!);
+              return Validations.validateConfirmPassword(
+                  controller.passKey, value!);
             },
           ),
         ],

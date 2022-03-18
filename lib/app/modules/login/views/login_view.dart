@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:travelapp/app/data/helpers/validations.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
@@ -63,7 +64,7 @@ class LoginView extends GetView<LoginController> {
                         controller.email = value!;
                       },
                       validator: (value) {
-                        return controller.validateEmail(value!);
+                        return Validations.validateEmail(value!);
                       },
                     ),
                   ),
@@ -89,7 +90,7 @@ class LoginView extends GetView<LoginController> {
                                 controller.password = value!;
                               },
                               validator: (value) {
-                                return controller.validatePassword(value!);
+                                return Validations.validatePassword(value!);
                               },
                             ),
                             GestureDetector(
