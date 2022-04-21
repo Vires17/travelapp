@@ -14,10 +14,10 @@ class CoverImage {
   factory CoverImage.fromJson(Map<String, dynamic> json) {
     return CoverImage(
       id: json['id'],
-      largeUrl: json['attributes']!['formats']!['large']!['url'] ?? '',
-      mediumUrl: json['attributes']['formats']['medium']['url'] ?? '',
-      smallUrl: json['attributes']['formats']['small']['url'] ?? '',
-      thumbnailUrl: json['attributes']['formats']['thumbnail']['url'] ?? '',
+      // largeUrl: json['attributes']!['formats']!['large']!['url'] ?? '',
+      // mediumUrl: json['attributes']['formats']['medium']['url'] ?? '',
+      // smallUrl: json['attributes']['formats']['small']['url'] ?? '',
+      // thumbnailUrl: json['attributes']['formats']['thumbnail']['url'] ?? '',
       originalUrl: json['attributes']['url'] ?? '',
     );
   }

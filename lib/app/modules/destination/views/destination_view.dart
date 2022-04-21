@@ -38,9 +38,12 @@ class DestinationView extends GetView<DestinationController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Cover(size: size),
+              Cover(
+                size: size,
+                imageUrl: controller.destination.coverImage!.originalUrl!,
+              ),
               DestinationTitle(
-                title: 'HA LONG BAY',
+                title: controller.destination.name ?? '',
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),

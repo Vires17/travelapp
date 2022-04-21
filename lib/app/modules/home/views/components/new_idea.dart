@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
+import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class NewIdeas extends StatelessWidget {
@@ -16,6 +17,8 @@ class NewIdeas extends StatelessWidget {
     'Đà Nẵng'
   ];
 
+  HomeController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,42 +26,43 @@ class NewIdeas extends StatelessWidget {
         HeaderTitle(
           title: "New ideas",
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 15),
-          height: size.height * 0.3,
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
-            scrollDirection: Axis.horizontal,
-            itemCount: destinations.length,
-            itemBuilder: (_, index) {
-              return InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.DESTINATION);
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(26),
+        Obx(() {
+          return Container(
+            margin: EdgeInsets.symmetric(vertical: 15),
+            height: size.height * 0.3,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.destinationList.length,
+              itemBuilder: (_, index) {
+                return InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.DESTINATION,
+                        arguments: controller.destinationList[index]);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(26.0),
+                          child: Image.network(
+                            controller.destinationList[index].coverImage!
+                                .originalUrl!,
+                            height: size.height * 0.25,
+                            fit: BoxFit.fill,
                           ),
                         ),
-                        child: Image.asset(
-                          "assets/halongbay.png",
-                          height: size.height * 0.25,
-                        ),
-                      ),
-                      Text('${destinations[index]}'),
-                    ],
+                        Text('${controller.destinationList[index].name}'),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-        ),
+                );
+              },
+            ),
+          );
+        })
       ],
     );
   }
