@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp/app/components/HeaderTitle.dart';
 
 class NewIdeas extends StatelessWidget {
   NewIdeas({
@@ -17,45 +18,8 @@ class NewIdeas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 5),
-          child: Stack(
-            fit: StackFit.loose,
-            children: [
-              Container(
-                child: Text(
-                  "New ideas",
-                  style: TextStyle(
-                    color: Color(0xff000000),
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Container(
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () {
-                      //
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Text(
-                        "Xem thêm",
-                        style: TextStyle(
-                          color: Color(0xff3bb9d9),
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        HeaderTitle(
+          title: "New ideas",
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 15),

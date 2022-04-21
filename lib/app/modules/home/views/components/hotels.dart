@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp/app/components/HeaderTitle.dart';
+import 'package:travelapp/app/components/HotelCard.dart';
 
 class Hotels extends StatelessWidget {
   Hotels({
@@ -18,44 +20,8 @@ class Hotels extends StatelessWidget {
     double cardHeight = MediaQuery.of(context).size.height / 3.6;
     return Column(
       children: [
-        Container(
-          width: double.infinity,
-          child: Stack(
-            fit: StackFit.loose,
-            children: [
-              Container(
-                child: Text(
-                  "New posts",
-                  style: TextStyle(
-                    color: Color(0xff000000),
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Container(
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () {
-                      //
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Text(
-                        "Xem thêm",
-                        style: TextStyle(
-                          color: Color(0xff3bb9d9),
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        HeaderTitle(
+          title: "Hotels",
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 15),
@@ -67,23 +33,10 @@ class Hotels extends StatelessWidget {
             children: List.generate(
               20,
               (index) {
-                return Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(26),
-                        ),
-                      ),
-                      child: Image.asset(
-                        "assets/vinpearl_hotel_CT.png",
-                        height: 160,
-                        width: 172,
-                      ),
-                    ),
-                    Text('Vinpearl Hotel Can Tho'),
-                    Text('From \$40'),
-                  ],
+                return HotelCard(
+                  image: "assets/vinpearl_hotel_CT.png",
+                  name: 'Vinpearl Hotel Can Tho',
+                  price: 'From \$40',
                 );
               },
             ),

@@ -6,6 +6,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/option/bindings/option_binding.dart';
 import '../modules/option/views/option_view.dart';
+import '../modules/post_details/bindings/post_details_binding.dart';
+import '../modules/post_details/views/post_details_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.POST_DETAILS,
+      page: () => PostDetailsView(),
+      binding: PostDetailsBinding(),
     ),
   ];
 }
