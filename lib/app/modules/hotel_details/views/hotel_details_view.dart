@@ -7,6 +7,7 @@ import 'package:travelapp/app/modules/hotel_details/views/another_hotels.dart';
 import 'package:travelapp/app/modules/hotel_details/views/components/Cover.dart';
 import 'package:travelapp/app/modules/hotel_details/views/hotel_content.dart';
 import 'package:travelapp/app/modules/hotel_details/views/title.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../controllers/hotel_details_controller.dart';
 
@@ -38,13 +39,24 @@ class HotelDetailsView extends GetView<HotelDetailsController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Cover(size: size),
+              Cover(
+                size: size,
+                imageUrl: controller.hotel.coverImage!.largeUrl!,
+              ),
               HotelTitle(
-                title: 'Vinpearl Hotel Can Tho',
-                star: 1234,
+                title: controller.hotel.name!,
+                star: controller.hotel.startCount!,
                 viewer: 1234,
               ),
-              HotelContent(),
+              Container(
+                width: size.width,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Markdown(
+                  data: controller.hotel.content!,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ),
               AnotherHotels(),
             ],
           ),

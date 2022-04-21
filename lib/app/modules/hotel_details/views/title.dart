@@ -11,7 +11,8 @@ class HotelTitle extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final int star, viewer;
+  final int viewer;
+  final double star;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class HotelTitle extends StatelessWidget {
           SizedBox(height: 10),
           StarRating(
             starCount: 5,
-            rating: 4.5,
+            rating: star,
             color: Color(0xffFFAA04),
           ),
           SizedBox(height: 10),

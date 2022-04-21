@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp/app/data/constants.dart';
 
 class HotelCard extends StatelessWidget {
   HotelCard({
@@ -17,18 +18,16 @@ class HotelCard extends StatelessWidget {
       onTap: onPress,
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(26),
-              ),
-            ),
-            child: Image.asset(
+          ClipRRect(
+            borderRadius: BorderRadius.circular(26.0),
+            child: Image.network(
               image,
               height: 160,
               width: 172,
+              fit: BoxFit.fill,
             ),
           ),
+          SizedBox(height: 10),
           Text(name),
           Text(price),
         ],

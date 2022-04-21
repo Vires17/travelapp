@@ -4,9 +4,12 @@ class Cover extends StatelessWidget {
   const Cover({
     Key? key,
     required this.size,
+    required this.imageUrl,
   }) : super(key: key);
 
   final Size size;
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +32,8 @@ class Cover extends StatelessWidget {
           ],
         ),
         child: ClipRRect(
-          child: Image.asset(
-            "assets/nhatrang-01-min_1.jpg",
+          child: Image.network(
+            imageUrl,
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.fill,

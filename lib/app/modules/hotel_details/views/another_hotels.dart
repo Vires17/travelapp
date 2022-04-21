@@ -38,7 +38,8 @@ class AnotherHotels extends StatelessWidget {
                 3,
                 (index) {
                   return HotelCard(
-                      image: "assets/vinpearl_hotel_CT.png",
+                      image:
+                          "https://travel-api-public.s3.ap-southeast-1.amazonaws.com/large_144525984_36ecbf2f08.jpg",
                       name: 'Vinpearl Hotel Can Tho',
                       price: 'From \$40',
                       onPress: () {

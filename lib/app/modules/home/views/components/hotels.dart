@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/HotelCard.dart';
+import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class Hotels extends StatelessWidget {
@@ -15,6 +16,8 @@ class Hotels extends StatelessWidget {
     'Đà Nẵng'
   ];
 
+  HomeController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,27 +28,36 @@ class Hotels extends StatelessWidget {
         HeaderTitle(
           title: "Hotels",
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 15),
-          child: GridView.count(
-            childAspectRatio: 1 / 1.2,
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            children: List.generate(
-              5,
-              (index) {
-                return HotelCard(
-                    image: "assets/vinpearl_hotel_CT.png",
-                    name: 'Vinpearl Hotel Can Tho',
-                    price: 'From \$40',
-                    onPress: () {
-                      Get.toNamed(Routes.HOTEL_DETAILS);
-                    });
-              },
-            ),
-          ),
-        ),
+        Obx(
+          () {
+            return Container(
+              margin: EdgeInsets.symmetric(vertical: 15),
+              child: GridView.count(
+                childAspectRatio: 1 / 1.2,
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: List.generate(
+                  controller.hotelList.length,
+                  (index) {
+                    return HotelCard(
+                        image: controller
+                            .hotelList[index].coverImage!.originalUrl!,
+                        name: controller.hotelList[index].name!,
+                        price:
+                            'From \$${controller.hotelList[index].priceFrom}',
+                        onPress: () {
+                          Get.toNamed(
+                            Routes.HOTEL_DETAILS,
+                            arguments: controller.hotelList[index],
+                          );
+                        });
+                  },
+                ),
+              ),
+            );
+          },
+        )
       ],
     );
   }

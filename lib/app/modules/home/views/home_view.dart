@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:travelapp/app/components/DatePickerCustom.dart';
-import 'package:travelapp/app/components/dropdown.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/data/constants.dart';
