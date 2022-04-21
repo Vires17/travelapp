@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/HotelCard.dart';
+import 'package:travelapp/app/routes/app_pages.dart';
 
 class Hotels extends StatelessWidget {
   Hotels({
@@ -31,13 +33,15 @@ class Hotels extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: List.generate(
-              20,
+              5,
               (index) {
                 return HotelCard(
-                  image: "assets/vinpearl_hotel_CT.png",
-                  name: 'Vinpearl Hotel Can Tho',
-                  price: 'From \$40',
-                );
+                    image: "assets/vinpearl_hotel_CT.png",
+                    name: 'Vinpearl Hotel Can Tho',
+                    price: 'From \$40',
+                    onPress: () {
+                      Get.toNamed(Routes.HOTEL_DETAILS);
+                    });
               },
             ),
           ),

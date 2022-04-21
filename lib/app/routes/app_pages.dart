@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/hotel_details/bindings/hotel_details_binding.dart';
+import '../modules/hotel_details/views/hotel_details_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/option/bindings/option_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.POST_DETAILS,
       page: () => PostDetailsView(),
       binding: PostDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOTEL_DETAILS,
+      page: () => HotelDetailsView(),
+      binding: HotelDetailsBinding(),
     ),
   ];
 }
