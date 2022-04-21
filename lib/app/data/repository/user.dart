@@ -8,7 +8,7 @@ import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class UserRepository {
-  static Future<bool> loginUser(String email, String password) async {
+  static Future<String> loginUser(String email, String password) async {
     var url = Uri.parse(API_URL + '/api/auth/local/');
     var token = APP_TOKEN;
     var body = {
@@ -21,25 +21,24 @@ class UserRepository {
     };
     var response =
         await http.post(url, body: json.encode(body), headers: header);
-
-    if (response.statusCode == 200) {
-      final result = jsonDecode(response.body);
-      final jwt = result['jwt'];
+    final result = jsonDecode(response.body);
+    final dynamic error = result['error'];
+    if (error != null) {
+      return error['message'];
+    } else {
       Map<String, dynamic> user = result['user'];
       StorageHelper.saveUserToStorage(user);
-      return true;
-    } else {
-      return false;
+      return "success";
     }
   }
 
-  static Future<bool> createUser(String name, email, phone, password) async {
+  static Future<String> createUser(String name, email, phone, password) async {
     var url = Uri.parse(API_URL + '/api/users/');
     var token = APP_TOKEN;
     var body = {
       'username': name,
       'email': email,
-      'phone': phone,
+      'phone_number': phone,
       'password': password,
       'confirmed': true
     };
@@ -50,10 +49,13 @@ class UserRepository {
     };
     var response =
         await http.post(url, body: json.encode(body), headers: header);
-    if (response.statusCode == 201) {
-      return true;
+    // get error from response
+    final result = jsonDecode(response.body);
+    final dynamic error = result['error'];
+    if (error != null) {
+      return error['message'];
     } else {
-      return false;
+      return "success";
     }
   }
 }

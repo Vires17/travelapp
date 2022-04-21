@@ -36,24 +36,24 @@ class RegisterController extends GetxController {
       return;
     }
     signupFormKey.currentState!.save();
-    bool isCreated =
+    String isCreated =
         await UserRepository.createUser(name, email, phone, password);
 
-    if (isCreated) {
-      bool isLogin = await UserRepository.loginUser(email, password);
-      if (isLogin) {
+    if (isCreated == "success") {
+      String isLogin = await UserRepository.loginUser(email, password);
+      if (isLogin == 'success') {
         Get.offAllNamed(Routes.HOME);
       } else {
         Get.snackbar(
-          "Thất bại",
-          "Đăng nhập thất bại.",
+          'Login failed',
+          isLogin,
           snackPosition: SnackPosition.BOTTOM,
         );
       }
     } else {
       Get.snackbar(
-        "Thất bại",
-        "Đăng ký thất bại.",
+        "Register failed",
+        isCreated,
         snackPosition: SnackPosition.BOTTOM,
       );
     }

@@ -24,13 +24,13 @@ class LoginController extends GetxController {
       return;
     }
     signupFormKey.currentState!.save();
-    bool isLogin = await UserRepository.loginUser(email, password);
-    if (isLogin) {
+    String isLogin = await UserRepository.loginUser(email, password);
+    if (isLogin == "success") {
       Get.offAllNamed(Routes.HOME);
     } else {
       Get.snackbar(
-        "Thất bại",
-        "Đăng nhập thất bại.",
+        "Login failed",
+        isLogin,
         snackPosition: SnackPosition.BOTTOM,
       );
     }

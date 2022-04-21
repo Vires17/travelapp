@@ -4,40 +4,43 @@ import 'package:get/get.dart';
 class Validations {
   static String? validateEmail(String email) {
     if (email.isEmpty) {
-      return 'Email không được trống';
+      return 'Email is not empty';
     }
     if (!GetUtils.isEmail(email)) {
-      return 'Email không hợp lệ';
+      return 'Email is not valid';
     }
     return null;
   }
 
   static String? validateName(String name) {
     if (name.length >= 255) {
-      return 'Tên bạn không được quá 255 ký tự';
+      return 'Your name is not exceed 255 characters';
     }
+    // if (name.length < 3) {
+    //   return "Your name is too short";
+    // }
     if (name.isEmpty) {
-      return 'Họ tên không được trống';
+      return 'Your name is not empty';
     }
     return null;
   }
 
   static String? validatePhone(String phone) {
     if (phone.isEmpty) {
-      return 'Số điện thoại không được trống';
+      return 'Phone number is not empty';
     }
     if (!GetUtils.isPhoneNumber(phone)) {
-      return 'Số điện thoại không hợp lệ';
+      return 'Phone number is not a valid';
     }
     return null;
   }
 
   static String? validatePassword(String password) {
     if (password.isEmpty) {
-      return 'Mật khẩu không được trống';
+      return 'Password is not empty';
     }
     if (password.length < 6) {
-      return "Mật khẩu phải lớn hơn 6 ký tự";
+      return "Password must be at least 6 characters";
     }
     return null;
   }
