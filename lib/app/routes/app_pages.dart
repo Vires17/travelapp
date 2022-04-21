@@ -12,6 +12,8 @@ import '../modules/option/bindings/option_binding.dart';
 import '../modules/option/views/option_view.dart';
 import '../modules/post_details/bindings/post_details_binding.dart';
 import '../modules/post_details/views/post_details_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.DESTINATION,
       page: () => DestinationView(),
       binding: DestinationBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

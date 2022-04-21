@@ -52,7 +52,7 @@ class MyDrawer extends StatelessWidget {
                   icon: Icons.person_outline_outlined,
                   iconColor: Color(0xff000000),
                   onPressed: () {
-                    //
+                    Get.toNamed(Routes.PROFILE);
                   },
                 ),
                 buildMenuItem(
