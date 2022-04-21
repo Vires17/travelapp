@@ -41,7 +41,7 @@ class HotelDetailsView extends GetView<HotelDetailsController> {
             children: [
               Cover(
                 size: size,
-                imageUrl: controller.hotel.coverImage!.largeUrl!,
+                imageUrl: controller.hotel.coverImage!.originalUrl!,
               ),
               HotelTitle(
                 title: controller.hotel.name!,
