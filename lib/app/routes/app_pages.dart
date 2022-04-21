@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/destination/bindings/destination_binding.dart';
+import '../modules/destination/views/destination_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/hotel_details/bindings/hotel_details_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.HOTEL_DETAILS,
       page: () => HotelDetailsView(),
       binding: HotelDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DESTINATION,
+      page: () => DestinationView(),
+      binding: DestinationBinding(),
     ),
   ];
 }

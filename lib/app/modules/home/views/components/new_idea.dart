@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
+import 'package:travelapp/app/routes/app_pages.dart';
 
 class NewIdeas extends StatelessWidget {
   NewIdeas({
@@ -30,23 +32,28 @@ class NewIdeas extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: destinations.length,
             itemBuilder: (_, index) {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(26),
+              return InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.DESTINATION);
+                },
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(26),
+                          ),
+                        ),
+                        child: Image.asset(
+                          "assets/halongbay.png",
+                          height: size.height * 0.25,
                         ),
                       ),
-                      child: Image.asset(
-                        "assets/halongbay.png",
-                        height: size.height * 0.25,
-                      ),
-                    ),
-                    Text('${destinations[index]}'),
-                  ],
+                      Text('${destinations[index]}'),
+                    ],
+                  ),
                 ),
               );
             },
