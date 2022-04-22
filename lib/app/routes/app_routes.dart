@@ -11,6 +11,7 @@ abstract class Routes {
   static const HOTEL_DETAILS = _Paths.HOTEL_DETAILS;
   static const DESTINATION = _Paths.DESTINATION;
   static const PROFILE = _Paths.PROFILE;
+  static const CHATBOT = _Paths.CHATBOT;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const HOTEL_DETAILS = '/hotel-details';
   static const DESTINATION = '/destination';
   static const PROFILE = '/profile';
+  static const CHATBOT = '/chatbot';
 }

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/chatbot/bindings/chatbot_binding.dart';
+import '../modules/chatbot/views/chatbot_view.dart';
 import '../modules/destination/bindings/destination_binding.dart';
 import '../modules/destination/views/destination_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHATBOT,
+      page: () => ChatbotView(),
+      binding: ChatbotBinding(),
     ),
   ];
 }

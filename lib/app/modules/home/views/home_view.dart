@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
+import 'package:travelapp/app/components/layouts/chatbot_button.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/data/constants.dart';
 import 'package:travelapp/app/data/helpers/storage_helper.dart';
@@ -33,13 +34,7 @@ class HomeView extends GetView<HomeController> {
           _scaffoldKey.currentState!.openDrawer();
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-        },
-        child: Icon(Icons.message_outlined),
-        backgroundColor: Color(0xFF6C6969),
-      ),
+      floatingActionButton: chatbot,
       drawer: buildDrawer(context),
       body: SafeArea(
         child: SingleChildScrollView(

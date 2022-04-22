@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
+import 'package:travelapp/app/components/layouts/chatbot_button.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/modules/destination/views/components/Cover.dart';
 import 'package:travelapp/app/modules/destination/views/title.dart';
@@ -23,13 +24,7 @@ class DestinationView extends GetView<DestinationController> {
           destinationDetailScaffoldKey.currentState!.openDrawer();
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-        },
-        child: Icon(Icons.message_outlined),
-        backgroundColor: Color(0xFF6C6969),
-      ),
+      floatingActionButton: chatbot,
       drawer: buildDrawer(context),
       body: SingleChildScrollView(
         child: Container(

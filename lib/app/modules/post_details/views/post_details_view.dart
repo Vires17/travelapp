@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
+import 'package:travelapp/app/components/layouts/chatbot_button.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/modules/post_details/views/components/Cover.dart';
 import 'package:travelapp/app/modules/post_details/views/post_content.dart';
@@ -26,13 +27,7 @@ class PostDetailsView extends GetView<PostDetailsController> {
           postDetailScaffoldKey.currentState!.openDrawer();
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-        },
-        child: Icon(Icons.message_outlined),
-        backgroundColor: Color(0xFF6C6969),
-      ),
+      floatingActionButton: chatbot,
       drawer: buildDrawer(context),
       body: SingleChildScrollView(
         child: Container(

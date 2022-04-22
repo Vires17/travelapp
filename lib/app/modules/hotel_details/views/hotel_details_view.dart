@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
+import 'package:travelapp/app/components/layouts/chatbot_button.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/modules/hotel_details/views/another_hotels.dart';
 import 'package:travelapp/app/modules/hotel_details/views/components/Cover.dart';
@@ -24,13 +25,7 @@ class HotelDetailsView extends GetView<HotelDetailsController> {
           hotelDetailScaffoldKey.currentState!.openDrawer();
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-        },
-        child: Icon(Icons.message_outlined),
-        backgroundColor: Color(0xFF6C6969),
-      ),
+      floatingActionButton: chatbot,
       drawer: buildDrawer(context),
       body: SingleChildScrollView(
         child: Container(
