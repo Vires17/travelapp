@@ -6,6 +6,7 @@ import 'package:travelapp/app/components/layouts/appbar.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/data/constants.dart';
 import 'package:travelapp/app/data/helpers/storage_helper.dart';
+import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/modules/home/views/components/hotels.dart';
 import 'package:travelapp/app/modules/home/views/components/new_idea.dart';
 import 'package:travelapp/app/modules/home/views/components/new_posts.dart';

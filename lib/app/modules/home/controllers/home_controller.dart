@@ -12,6 +12,10 @@ class HomeController extends GetxController {
   bool get loading => _loading.value;
   set loading(value) => _loading.value = value;
 
+  Rx<User> _currentUser = User().obs;
+  User get currentUser => _currentUser.value;
+  set currentUser(value) => _currentUser.value = value;
+
   RxList<Hotel> _hotelList = List<Hotel>.empty(growable: true).obs;
   List<Hotel> get hotelList => _hotelList;
   set hotelList(value) => _hotelList.value = value;
@@ -23,6 +27,7 @@ class HomeController extends GetxController {
 
   Future loadData() async {
     loading = true;
+    currentUser = await StorageHelper.getUserFromStorage();
     hotelList = await HotelRepository.getHotels();
     destinationList = await DestinationRepository.getDestinations();
     // currentAddress = addressList[0];

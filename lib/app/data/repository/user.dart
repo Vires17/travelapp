@@ -36,7 +36,8 @@ class UserRepository {
     var url = Uri.parse(API_URL + '/api/users/');
     var token = APP_TOKEN;
     var body = {
-      'username': name,
+      'name': name,
+      'username': email,
       'email': email,
       'phone_number': phone,
       'password': password,
@@ -55,6 +56,36 @@ class UserRepository {
     if (error != null) {
       return error['message'];
     } else {
+      return "success";
+    }
+  }
+
+  static Future<String> updateUser(
+      int userID, String name, email, phone) async {
+    var url = Uri.parse(API_URL + '/api/users/' + userID.toString());
+    var token = APP_TOKEN;
+    var body = {
+      'name': name,
+      'email': email,
+      'phone_number': phone,
+      'confirmed': true
+    };
+    var header = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    var response =
+        await http.put(url, body: json.encode(body), headers: header);
+    // get error from response
+    final result = jsonDecode(response.body);
+    final dynamic error = result['error'];
+    if (error != null) {
+      return error['message'];
+    } else {
+      Map<String, dynamic> user = result;
+      print(user);
+      StorageHelper.saveUserToStorage(user);
       return "success";
     }
   }

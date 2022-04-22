@@ -1,21 +1,21 @@
 class User {
-  final int id;
-  final String username, phone, email;
-  final String? token;
+  int? id;
+  String? username, phone, email;
+  String? token;
 
   User({
-    required this.id,
-    required this.username,
-    required this.phone,
-    required this.email,
-    this.token,
+    this.id = -1,
+    this.username = '',
+    this.phone = '',
+    this.email = '',
+    this.token = '',
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
-      username: json['username'],
-      phone: json['phone'],
+      username: json['name'],
+      phone: json['phone_number'],
       email: json['email'],
       token: json['token'],
       // pro_weight: double.parse(
