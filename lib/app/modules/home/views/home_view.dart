@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:travelapp/app/components/custom_loader.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
 import 'package:travelapp/app/components/layouts/chatbot_button.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
@@ -40,18 +41,28 @@ class HomeView extends GetView<HomeController> {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 22, vertical: 15),
-            width: size.width,
-            child: Column(
-              children: [
-                Search(),
-                NewIdeas(
-                  size: size,
-                ),
-                NewPosts(),
-                Hotels(),
-              ],
+          child: RefreshIndicator(
+            onRefresh: () => controller.loadData(),
+            child: Obx(
+              () {
+                if (controller.loading == true) {
+                  return LoadingScreen(height: size.height);
+                }
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                  width: size.width,
+                  child: Column(
+                    children: [
+                      Search(),
+                      NewIdeas(
+                        size: size,
+                      ),
+                      NewPosts(),
+                      Hotels(),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
         ),

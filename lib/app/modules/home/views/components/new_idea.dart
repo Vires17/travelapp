@@ -52,6 +52,13 @@ class NewIdeas extends StatelessWidget {
                                 .originalUrl!,
                             height: size.height * 0.25,
                             fit: BoxFit.fill,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
                           ),
                         ),
                         Text('${controller.destinationList[index].name}'),

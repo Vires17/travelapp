@@ -1,4 +1,5 @@
 import 'package:travelapp/app/data/models/cover_image.dart';
+import 'package:travelapp/app/data/models/image.dart';
 
 class Hotel {
   int? id;
@@ -6,6 +7,7 @@ class Hotel {
   int? priceFrom;
   double? startCount;
   CoverImage? coverImage;
+  List<ImageModel> images = List<ImageModel>.empty(growable: true);
 
   Hotel({
     this.id = -1,
@@ -17,9 +19,15 @@ class Hotel {
     this.phoneNumber = '',
     this.priceFrom = 0,
     this.coverImage,
+    required this.images,
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) {
+    List<dynamic> list = json["album"]["data"];
+    List<ImageModel>? images_tmp = List<ImageModel>.empty(growable: true);
+    list.forEach((d) {
+      images_tmp.add(ImageModel.fromJson(d));
+    });
     return Hotel(
       id: json['id'],
       name: json['name'],
@@ -31,6 +39,7 @@ class Hotel {
       phoneNumber: json['phone_number'],
       priceFrom: json['price_from'] ?? 0,
       coverImage: CoverImage.fromJson(json['cover_image']['data']),
+      images: images_tmp,
     );
   }
 }

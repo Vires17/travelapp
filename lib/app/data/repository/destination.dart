@@ -10,8 +10,11 @@ import 'package:travelapp/app/routes/app_pages.dart';
 
 class DestinationRepository {
   static Future<List<Destination>> getDestinations() async {
-    var url =
-        Uri.parse(API_URL + '/api/destinations/?populate=cover_image, album');
+    final queryParams = {
+      'populate': 'cover_image, album',
+    };
+    var url = Uri.https(API_URL, '/api/destinations/', queryParams);
+
     var token = APP_TOKEN;
     var header = {
       'Content-Type': 'application/json',

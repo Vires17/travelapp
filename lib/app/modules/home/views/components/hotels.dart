@@ -10,12 +10,6 @@ class Hotels extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final List<String> destinations = <String>[
-    'Hạ Long Bay',
-    'Hà Nội',
-    'Đà Nẵng'
-  ];
-
   HomeController controller = Get.find();
 
   @override
@@ -41,17 +35,17 @@ class Hotels extends StatelessWidget {
                   controller.hotelList.length,
                   (index) {
                     return HotelCard(
-                        image: controller
-                            .hotelList[index].coverImage!.originalUrl!,
-                        name: controller.hotelList[index].name!,
-                        price:
-                            'From \$${controller.hotelList[index].priceFrom}',
-                        onPress: () {
-                          Get.toNamed(
-                            Routes.HOTEL_DETAILS,
-                            arguments: controller.hotelList[index],
-                          );
-                        });
+                      image:
+                          controller.hotelList[index].coverImage!.originalUrl!,
+                      name: controller.hotelList[index].name!,
+                      price: 'From \$${controller.hotelList[index].priceFrom}',
+                      onPress: () {
+                        Get.toNamed(
+                          Routes.HOTEL_DETAILS,
+                          arguments: controller.hotelList[index],
+                        );
+                      },
+                    );
                   },
                 ),
               ),

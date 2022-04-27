@@ -10,7 +10,7 @@ class HotelDetailsController extends GetxController {
 
   Future loadData() async {
     loading = true;
-    // currentAddress = addressList[0];
+    print(hotel.images.length);
     loading = false;
   }
 

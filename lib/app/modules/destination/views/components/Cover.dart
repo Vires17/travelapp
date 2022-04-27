@@ -36,6 +36,13 @@ class Cover extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.fill,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
           ),
         ),
       ),
