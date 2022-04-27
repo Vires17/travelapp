@@ -9,7 +9,8 @@ class PostTitle extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final int star, viewer;
+  final double star;
+  final int viewer;
 
   @override
   Widget build(BuildContext context) {

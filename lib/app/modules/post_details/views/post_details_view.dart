@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/layouts/appbar.dart';
@@ -36,14 +37,24 @@ class PostDetailsView extends GetView<PostDetailsController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Cover(size: size),
-              PostTitle(
-                title:
-                    'Son Doong Cave - Vietnam’s natural wonder is featured on Google',
-                star: 1234,
-                viewer: 1234,
+              Cover(
+                size: size,
+                imageUrl: controller.post.coverImage!.originalUrl!,
               ),
-              PostContent(),
+              PostTitle(
+                title: controller.post.title!,
+                star: controller.post.startCount!,
+                viewer: controller.post.viewCount!,
+              ),
+              Container(
+                width: size.width,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Markdown(
+                  data: controller.post.content!,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ),
               RelatedPost(),
             ],
           ),

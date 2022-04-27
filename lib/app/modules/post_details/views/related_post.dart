@@ -36,7 +36,8 @@ class RelatedPost extends StatelessWidget {
                       "Son Doong Cave - Vietnam’s natural wonder is featured on Google",
                   star: 1234,
                   viewer: 1234,
-                  image: "assets/sondon.png",
+                  image:
+                      "https://travel-api-public.s3.ap-southeast-1.amazonaws.com/large_144525984_36ecbf2f08.jpg",
                   onPress: () {
                     Get.toNamed(Routes.POST_DETAILS);
                   },

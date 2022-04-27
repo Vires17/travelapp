@@ -13,7 +13,8 @@ class PostCard extends StatelessWidget {
 
   final Size size;
   final String title, image;
-  final int star, viewer;
+  final double star;
+  final int viewer;
   final GestureTapCallback onPress;
 
   @override
@@ -27,16 +28,20 @@ class PostCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(26),
-                ),
-              ),
-              child: Image.asset(
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.network(
                 image,
                 height: 84,
                 width: 84,
+                fit: BoxFit.fill,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ),
             SizedBox(width: 10),

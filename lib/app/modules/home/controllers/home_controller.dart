@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:travelapp/app/data/helpers/storage_helper.dart';
 import 'package:travelapp/app/data/models/destination.dart';
 import 'package:travelapp/app/data/models/hotel.dart';
+import 'package:travelapp/app/data/models/post.dart';
 import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/data/repository/destination.dart';
 import 'package:travelapp/app/data/repository/hotel.dart';
+import 'package:travelapp/app/data/repository/post.dart';
 
 class HomeController extends GetxController {
   RxBool _loading = false.obs;
@@ -20,6 +22,10 @@ class HomeController extends GetxController {
   List<Hotel> get hotelList => _hotelList;
   set hotelList(value) => _hotelList.value = value;
 
+  RxList<Post> _postList = List<Post>.empty(growable: true).obs;
+  List<Post> get postList => _postList;
+  set postList(value) => _postList.value = value;
+
   RxList<Destination> _destinationList =
       List<Destination>.empty(growable: true).obs;
   List<Destination> get destinationList => _destinationList;
@@ -29,6 +35,7 @@ class HomeController extends GetxController {
     loading = true;
     currentUser = await StorageHelper.getUserFromStorage();
     hotelList = await HotelRepository.getHotels();
+    postList = await PostRepository.getPosts();
     destinationList = await DestinationRepository.getDestinations();
     // currentAddress = addressList[0];
     loading = false;
