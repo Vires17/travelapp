@@ -11,10 +11,16 @@ import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class PostRepository {
-  static Future<List<Post>> getPosts() async {
+  static Future<List<Post>> getPosts([int? destinationId]) async {
     var queryParams = {
-      'populate': 'cover_image',
+      'populate': 'cover_image, destination',
     };
+    if (destinationId != null) {
+      queryParams = {
+        ...queryParams,
+        'filters[destination][id][\$eq]': destinationId.toString(),
+      };
+    }
     var url = Uri.https(API_URL, '/api/posts/', queryParams);
     var token = APP_TOKEN;
     var header = {

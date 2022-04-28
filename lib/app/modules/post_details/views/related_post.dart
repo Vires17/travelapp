@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/PostCard.dart';
+import 'package:travelapp/app/components/coming_soon.dart';
+import 'package:travelapp/app/modules/post_details/controllers/post_details_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class RelatedPost extends StatelessWidget {
@@ -9,11 +11,7 @@ class RelatedPost extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final List<String> destinations = <String>[
-    'Hạ Long Bay',
-    'Hà Nội',
-    'Đà Nẵng'
-  ];
+  PostDetailsController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -23,28 +21,40 @@ class RelatedPost extends StatelessWidget {
       child: Column(
         children: [
           HeaderTitle(title: "Related posts"),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 15),
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
-              itemBuilder: (_, index) {
-                return PostCard(
-                  size: size,
-                  title:
-                      "Son Doong Cave - Vietnam’s natural wonder is featured on Google",
-                  star: 1234,
-                  viewer: 1234,
-                  image:
-                      "https://travel-api-public.s3.ap-southeast-1.amazonaws.com/large_144525984_36ecbf2f08.jpg",
-                  onPress: () {
-                    Get.toNamed(Routes.POST_DETAILS);
-                  },
-                );
-              },
-            ),
-          ),
+          Obx(() {
+            if (controller.loading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (controller.relatedPostList.length == 0) {
+              return const ComingSoon();
+            }
+            return Container(
+              margin: EdgeInsets.symmetric(vertical: 15),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: controller.relatedPostList.length,
+                itemBuilder: (_, index) {
+                  return PostCard(
+                    size: size,
+                    title: controller.relatedPostList[index].title!,
+                    star: controller.relatedPostList[index].startCount!,
+                    viewer: controller.relatedPostList[index].viewCount!,
+                    image: controller
+                        .relatedPostList[index].coverImage!.originalUrl!,
+                    onPress: () {
+                      Get.toNamed(
+                        Routes.POST_DETAILS,
+                        arguments: controller.relatedPostList[index],
+                      );
+                    },
+                  );
+                },
+              ),
+            );
+          })
         ],
       ),
     );

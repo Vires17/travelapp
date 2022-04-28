@@ -116,7 +116,7 @@ class ChatbotView extends GetView<ChatbotController> {
                     bottomLeft: Radius.circular(24),
                     bottomRight: Radius.circular(24),
                   ),
-                  color: Color(0xff2C2D2C),
+                  color: Color(0xffD84D4D),
                 ),
                 child: Text(
                   "This is message",

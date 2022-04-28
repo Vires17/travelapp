@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/HotelCard.dart';
+import 'package:travelapp/app/components/coming_soon.dart';
 import 'package:travelapp/app/modules/destination/controllers/destination_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
@@ -24,6 +25,14 @@ class AnotherHotels extends StatelessWidget {
             title: "Another Hotels",
           ),
           Obx(() {
+            if (controller.loading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (controller.hotelList.length == 0) {
+              return const ComingSoon();
+            }
             return Container(
               margin: EdgeInsets.symmetric(vertical: 15),
               child: GridView.count(

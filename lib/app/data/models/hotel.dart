@@ -1,4 +1,5 @@
 import 'package:travelapp/app/data/models/cover_image.dart';
+import 'package:travelapp/app/data/models/destination.dart';
 import 'package:travelapp/app/data/models/image.dart';
 
 class Hotel {
@@ -8,6 +9,7 @@ class Hotel {
   double? startCount;
   CoverImage? coverImage;
   List<ImageModel> images = List<ImageModel>.empty(growable: true);
+  Destination? destination;
 
   Hotel({
     this.id = -1,
@@ -19,6 +21,7 @@ class Hotel {
     this.phoneNumber = '',
     this.priceFrom = 0,
     this.coverImage,
+    this.destination,
     required this.images,
   });
 
@@ -39,6 +42,7 @@ class Hotel {
       phoneNumber: json['phone_number'],
       priceFrom: json['price_from'] ?? 0,
       coverImage: CoverImage.fromJson(json['cover_image']['data']),
+      destination: Destination.fromJson(json['destination']['data']),
       images: images_tmp,
     );
   }

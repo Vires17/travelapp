@@ -12,7 +12,7 @@ import 'package:travelapp/app/routes/app_pages.dart';
 class HotelRepository {
   static Future<List<Hotel>> getHotels([int? destinationId]) async {
     var queryParams = {
-      'populate': 'cover_image, album',
+      'populate': 'cover_image, album, destination',
     };
     if (destinationId != null) {
       queryParams = {
