@@ -12,6 +12,7 @@ import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/modules/home/views/components/hotels.dart';
 import 'package:travelapp/app/modules/home/views/components/new_idea.dart';
 import 'package:travelapp/app/modules/home/views/components/new_posts.dart';
+import 'package:travelapp/app/modules/home/views/components/restaurant.dart';
 import 'package:travelapp/app/modules/home/views/components/search.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
@@ -59,6 +60,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                       NewPosts(),
                       Hotels(),
+                      Restaurants(),
                     ],
                   ),
                 );

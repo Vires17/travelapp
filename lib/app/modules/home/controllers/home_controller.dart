@@ -4,10 +4,12 @@ import 'package:travelapp/app/data/helpers/storage_helper.dart';
 import 'package:travelapp/app/data/models/destination.dart';
 import 'package:travelapp/app/data/models/hotel.dart';
 import 'package:travelapp/app/data/models/post.dart';
+import 'package:travelapp/app/data/models/restaurant.dart';
 import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/data/repository/destination.dart';
 import 'package:travelapp/app/data/repository/hotel.dart';
 import 'package:travelapp/app/data/repository/post.dart';
+import 'package:travelapp/app/data/repository/restaurant.dart';
 
 class HomeController extends GetxController {
   RxBool _loading = false.obs;
@@ -22,6 +24,11 @@ class HomeController extends GetxController {
   List<Hotel> get hotelList => _hotelList;
   set hotelList(value) => _hotelList.value = value;
 
+  RxList<Restaurant> _restaurantList =
+      List<Restaurant>.empty(growable: true).obs;
+  List<Restaurant> get restaurantList => _restaurantList;
+  set restaurantList(value) => _restaurantList.value = value;
+
   RxList<Post> _postList = List<Post>.empty(growable: true).obs;
   List<Post> get postList => _postList;
   set postList(value) => _postList.value = value;
@@ -35,6 +42,7 @@ class HomeController extends GetxController {
     loading = true;
     currentUser = await StorageHelper.getUserFromStorage();
     hotelList = await HotelRepository.getHotels();
+    restaurantList = await RestaurantRepository.getRestaurants();
     postList = await PostRepository.getPosts();
     destinationList = await DestinationRepository.getDestinations();
     // currentAddress = addressList[0];

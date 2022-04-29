@@ -18,6 +18,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/restaurant_details/bindings/restaurant_details_binding.dart';
+import '../modules/restaurant_details/views/restaurant_details_view.dart';
 
 part 'app_routes.dart';
 
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.CHATBOT,
       page: () => ChatbotView(),
       binding: ChatbotBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESTAURANT_DETAILS,
+      page: () => RestaurantDetailsView(),
+      binding: RestaurantDetailsBinding(),
     ),
   ];
 }
