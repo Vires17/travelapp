@@ -22,7 +22,7 @@ class AnotherHotels extends StatelessWidget {
       child: Column(
         children: [
           HeaderTitle(
-            title: "Another Hotels",
+            title: "Hotels",
           ),
           Obx(() {
             if (controller.loading) {

@@ -6,9 +6,9 @@ import 'package:travelapp/app/components/layouts/chatbot_button.dart';
 import 'package:travelapp/app/components/layouts/drawer.dart';
 import 'package:travelapp/app/modules/destination/views/another_hotels.dart';
 import 'package:travelapp/app/modules/destination/views/components/Cover.dart';
+import 'package:travelapp/app/modules/destination/views/related_post.dart';
 import 'package:travelapp/app/modules/destination/views/title.dart';
 import 'package:travelapp/app/modules/home/views/components/hotels.dart';
-import 'package:travelapp/app/modules/home/views/components/new_posts.dart';
 
 import '../controllers/destination_controller.dart';
 
@@ -45,7 +45,7 @@ class DestinationView extends GetView<DestinationController> {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                 child: Column(
                   children: [
-                    NewPosts(),
+                    RelatedPost(),
                     AnotherHotels(),
                   ],
                 ),
