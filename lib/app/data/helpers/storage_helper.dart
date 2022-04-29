@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelapp/app/data/models/chatbot.dart';
 import 'package:travelapp/app/data/models/user.dart';
 
 class StorageHelper {
@@ -25,5 +26,31 @@ class StorageHelper {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var user = prefs.getString('user');
     return user != null;
+  }
+
+  static Future<bool> saveMessageChatBotToStorage(
+      List<ChatBot> messages) async {
+    String json =
+        jsonEncode(messages.map((i) => i.toJson()).toList()).toString();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String messageStore = jsonEncode(json);
+    return await prefs.setString('message', messageStore);
+  }
+
+  static Future<List<ChatBot>> getMessageChatBotFromStorage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<ChatBot> messages = List<ChatBot>.empty(growable: true);
+    if (prefs.getString('message') == null) {
+      return messages;
+    }
+    String messageMap = jsonDecode(prefs.getString('message') ?? "");
+    dynamic messageList = jsonDecode(messageMap);
+
+    for (int i = 0; i < messageList.length; i++) {
+      messages.add(ChatBot.fromJson(messageList[i]));
+      print(messageList[i]);
+    }
+
+    return messages;
   }
 }

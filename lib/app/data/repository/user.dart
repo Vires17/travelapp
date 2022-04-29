@@ -9,7 +9,7 @@ import 'package:travelapp/app/routes/app_pages.dart';
 
 class UserRepository {
   static Future<String> loginUser(String email, String password) async {
-    var url = Uri.parse(API_URL + '/api/auth/local/');
+    var url = Uri.https(API_URL, '/api/auth/local/');
     var token = APP_TOKEN;
     var body = {
       'identifier': email,
@@ -33,7 +33,7 @@ class UserRepository {
   }
 
   static Future<String> createUser(String name, email, phone, password) async {
-    var url = Uri.parse(API_URL + '/api/users/');
+    var url = Uri.https(API_URL, '/api/users/');
     var token = APP_TOKEN;
     var body = {
       'name': name,
@@ -62,7 +62,7 @@ class UserRepository {
 
   static Future<String> updateUser(
       int userID, String name, email, phone) async {
-    var url = Uri.parse(API_URL + '/api/users/' + userID.toString());
+    var url = Uri.https(API_URL, '/api/users/' + userID.toString());
     var token = APP_TOKEN;
     var body = {
       'name': name,
