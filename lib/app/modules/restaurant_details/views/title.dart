@@ -41,18 +41,27 @@ class RestaurantTitle extends StatelessWidget {
                 backgroundColor: Color(0xff2C8C0B),
                 text: 'Phone',
                 icon: Icons.phone,
+                onPress: () {
+                  //
+                },
               ),
               SizedBox(width: 15),
               TagContact(
                 backgroundColor: Color(0xff098BA8),
                 text: 'Email',
                 icon: Icons.email,
+                onPress: () {
+                  //
+                },
               ),
               SizedBox(width: 15),
               TagContact(
                 backgroundColor: Color(0xff0E0C7E),
                 text: 'Facebook',
                 icon: Icons.facebook,
+                onPress: () {
+                  //
+                },
               ),
             ],
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelapp/app/components/Rating.dart';
 import 'package:travelapp/app/components/TagContact.dart';
+import 'package:travelapp/app/modules/hotel_details/controllers/hotel_details_controller.dart';
 
 class HotelTitle extends StatelessWidget {
   HotelTitle({
@@ -13,6 +15,8 @@ class HotelTitle extends StatelessWidget {
   final String title;
   final int viewer;
   final double star;
+
+  HotelDetailsController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -41,18 +45,27 @@ class HotelTitle extends StatelessWidget {
                 backgroundColor: Color(0xff2C8C0B),
                 text: 'Phone',
                 icon: Icons.phone,
+                onPress: () {
+                  controller.dialCall();
+                },
               ),
               SizedBox(width: 15),
               TagContact(
                 backgroundColor: Color(0xff098BA8),
                 text: 'Email',
                 icon: Icons.email,
+                onPress: () {
+                  controller.emailRedirect();
+                },
               ),
               SizedBox(width: 15),
               TagContact(
                 backgroundColor: Color(0xff0E0C7E),
                 text: 'Facebook',
                 icon: Icons.facebook,
+                onPress: () {
+                  controller.facebookRedirect();
+                },
               ),
             ],
           ),
