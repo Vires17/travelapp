@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:travelapp/app/data/models/restaurant.dart';
 import 'package:travelapp/app/data/repository/restaurant.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RestaurantDetailsController extends GetxController {
   final Restaurant restaurant = Get.arguments;
@@ -18,6 +19,39 @@ class RestaurantDetailsController extends GetxController {
     relatedRestaurantList =
         await RestaurantRepository.getRestaurants(restaurant.destination!.id);
     loading = false;
+  }
+
+  Future<void> dialCall() async {
+    String phoneNumber = restaurant.phoneNumber ?? '';
+    if (phoneNumber == '') {
+      return;
+    }
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
+
+  Future<void> emailRedirect() async {
+    String emailAddress = restaurant.contactEmail ?? '';
+    if (emailAddress == '') {
+      return;
+    }
+    final Uri launchUri = Uri(
+      scheme: 'mailto',
+      path: emailAddress,
+    );
+    await launchUrl(launchUri);
+  }
+
+  Future<void> facebookRedirect() async {
+    String facebook = restaurant.facebookLink ?? '';
+    if (facebook == '') {
+      return;
+    }
+    final Uri launchUri = Uri.parse(facebook);
+    await launchUrl(launchUri);
   }
 
   @override

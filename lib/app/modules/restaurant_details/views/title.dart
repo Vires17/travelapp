@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelapp/app/components/Rating.dart';
 import 'package:travelapp/app/components/TagContact.dart';
+import 'package:travelapp/app/modules/restaurant_details/controllers/restaurant_details_controller.dart';
 
 class RestaurantTitle extends StatelessWidget {
   RestaurantTitle({
@@ -13,6 +15,8 @@ class RestaurantTitle extends StatelessWidget {
   final String title;
   final int viewer;
   final double star;
+
+  RestaurantDetailsController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class RestaurantTitle extends StatelessWidget {
                 text: 'Phone',
                 icon: Icons.phone,
                 onPress: () {
-                  //
+                  controller.dialCall();
                 },
               ),
               SizedBox(width: 15),
@@ -51,7 +55,7 @@ class RestaurantTitle extends StatelessWidget {
                 text: 'Email',
                 icon: Icons.email,
                 onPress: () {
-                  //
+                  controller.emailRedirect();
                 },
               ),
               SizedBox(width: 15),
@@ -60,7 +64,7 @@ class RestaurantTitle extends StatelessWidget {
                 text: 'Facebook',
                 icon: Icons.facebook,
                 onPress: () {
-                  //
+                  controller.facebookRedirect();
                 },
               ),
             ],
