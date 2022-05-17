@@ -6,7 +6,8 @@ import 'package:travelapp/app/data/constants.dart';
 import 'package:travelapp/app/data/models/restaurant.dart';
 
 class RestaurantRepository {
-  static Future<List<Restaurant>> getRestaurants([int? destinationId]) async {
+  static Future<List<Restaurant>> getRestaurants(
+      {int? destinationId, String? search}) async {
     var queryParams = {
       'populate': 'cover_image, album, destination',
     };
@@ -14,6 +15,12 @@ class RestaurantRepository {
       queryParams = {
         ...queryParams,
         'filters[destination][id][\$eq]': destinationId.toString(),
+      };
+    }
+    if (search != null) {
+      queryParams = {
+        ...queryParams,
+        'filters[name][\$containsi]': search,
       };
     }
     var url = Uri.https(API_URL, '/api/restaurants/', queryParams);

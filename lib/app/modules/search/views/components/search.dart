@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/data/helpers/validations.dart';
 import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
+import 'package:travelapp/app/modules/search/controllers/search_controller.dart';
 
 class Search extends StatelessWidget {
   Search({Key? key}) : super(key: key);
 
-  HomeController controller = Get.find();
+  SearchController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class Search extends StatelessWidget {
       child: Form(
         key: controller.searchFormKey,
         child: TextFormField(
+          initialValue: controller.search,
           onFieldSubmitted: (value) {
             controller.search = value;
             controller.searching();

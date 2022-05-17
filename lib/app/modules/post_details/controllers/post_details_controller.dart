@@ -15,7 +15,8 @@ class PostDetailsController extends GetxController {
   Future loadData() async {
     loading = true;
     print(post.destination!.id);
-    relatedPostList = await PostRepository.getPosts(post.destination!.id);
+    relatedPostList =
+        await PostRepository.getPosts(destinationId: post.destination!.id);
     loading = false;
   }
 

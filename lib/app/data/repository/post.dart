@@ -11,7 +11,8 @@ import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class PostRepository {
-  static Future<List<Post>> getPosts([int? destinationId]) async {
+  static Future<List<Post>> getPosts(
+      {int? destinationId, String? search}) async {
     var queryParams = {
       'populate': 'cover_image, destination',
     };
@@ -19,6 +20,13 @@ class PostRepository {
       queryParams = {
         ...queryParams,
         'filters[destination][id][\$eq]': destinationId.toString(),
+      };
+    }
+
+    if (search != null) {
+      queryParams = {
+        ...queryParams,
+        'filters[title][\$containsi]': search,
       };
     }
     var url = Uri.https(API_URL, '/api/posts/', queryParams);

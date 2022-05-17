@@ -13,6 +13,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const CHATBOT = _Paths.CHATBOT;
   static const RESTAURANT_DETAILS = _Paths.RESTAURANT_DETAILS;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const CHATBOT = '/chatbot';
   static const RESTAURANT_DETAILS = '/restaurant-details';
+  static const SEARCH = '/search';
 }

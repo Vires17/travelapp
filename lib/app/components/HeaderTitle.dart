@@ -4,9 +4,11 @@ class HeaderTitle extends StatelessWidget {
   HeaderTitle({
     Key? key,
     required this.title,
+    this.hideViewMore = false,
   }) : super(key: key);
 
   final String title;
+  bool? hideViewMore;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class HeaderTitle extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(
-                    "View more",
+                    hideViewMore! ? "" : "View more",
                     style: TextStyle(
                       color: Color(0xff3bb9d9),
                       fontSize: 16,

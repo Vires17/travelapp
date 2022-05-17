@@ -16,8 +16,8 @@ class RestaurantDetailsController extends GetxController {
 
   Future loadData() async {
     loading = true;
-    relatedRestaurantList =
-        await RestaurantRepository.getRestaurants(restaurant.destination!.id);
+    relatedRestaurantList = await RestaurantRepository.getRestaurants(
+        destinationId: restaurant.destination!.id);
     loading = false;
   }
 

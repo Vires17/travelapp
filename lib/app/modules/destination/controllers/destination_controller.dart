@@ -21,8 +21,9 @@ class DestinationController extends GetxController {
 
   Future loadData() async {
     loading = true;
-    hotelList = await HotelRepository.getHotels(destination.id);
-    relatedPostList = await PostRepository.getPosts(destination.id);
+    hotelList = await HotelRepository.getHotels(destinationId: destination.id);
+    relatedPostList =
+        await PostRepository.getPosts(destinationId: destination.id);
     loading = false;
   }
 

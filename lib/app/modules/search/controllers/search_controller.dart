@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_final_fields
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/data/helpers/storage_helper.dart';
@@ -11,11 +10,11 @@ import 'package:travelapp/app/data/repository/destination.dart';
 import 'package:travelapp/app/data/repository/hotel.dart';
 import 'package:travelapp/app/data/repository/post.dart';
 import 'package:travelapp/app/data/repository/restaurant.dart';
-import 'package:travelapp/app/routes/app_pages.dart';
 
-class HomeController extends GetxController {
-  var search = '';
+class SearchController extends GetxController {
+  String search = Get.arguments;
   final GlobalKey<FormState> searchFormKey = new GlobalKey<FormState>();
+  TextEditingController searchTextController = new TextEditingController();
 
   RxBool _loading = false.obs;
   bool get loading => _loading.value;
@@ -38,26 +37,19 @@ class HomeController extends GetxController {
   List<Post> get postList => _postList;
   set postList(value) => _postList.value = value;
 
-  RxList<Destination> _destinationList =
-      List<Destination>.empty(growable: true).obs;
-  List<Destination> get destinationList => _destinationList;
-  set destinationList(value) => _destinationList.value = value;
-
   Future loadData() async {
     loading = true;
+    searchTextController.text = search;
     currentUser = await StorageHelper.getUserFromStorage();
-    hotelList = await HotelRepository.getHotels();
-    restaurantList = await RestaurantRepository.getRestaurants();
-    postList = await PostRepository.getPosts();
-    destinationList = await DestinationRepository.getDestinations();
+    hotelList = await HotelRepository.getHotels(search: search);
+    restaurantList = await RestaurantRepository.getRestaurants(search: search);
+    postList = await PostRepository.getPosts(search: search);
     // currentAddress = addressList[0];
     loading = false;
   }
 
   void searching() async {
-    if (search.isNotEmpty) {
-      Get.toNamed(Routes.SEARCH, arguments: search);
-    }
+    await loadData();
   }
 
   @override

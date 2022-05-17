@@ -20,6 +20,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/restaurant_details/bindings/restaurant_details_binding.dart';
 import '../modules/restaurant_details/views/restaurant_details_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 
 part 'app_routes.dart';
 
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.RESTAURANT_DETAILS,
       page: () => RestaurantDetailsView(),
       binding: RestaurantDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }

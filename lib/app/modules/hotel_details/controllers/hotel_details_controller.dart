@@ -15,7 +15,8 @@ class HotelDetailsController extends GetxController {
 
   Future loadData() async {
     loading = true;
-    relatedHotelList = await HotelRepository.getHotels(hotel.destination!.id);
+    relatedHotelList =
+        await HotelRepository.getHotels(destinationId: hotel.destination!.id);
     loading = false;
   }
 
