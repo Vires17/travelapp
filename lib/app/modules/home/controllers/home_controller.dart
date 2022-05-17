@@ -46,10 +46,10 @@ class HomeController extends GetxController {
   Future loadData() async {
     loading = true;
     currentUser = await StorageHelper.getUserFromStorage();
-    hotelList = await HotelRepository.getHotels();
-    restaurantList = await RestaurantRepository.getRestaurants();
-    postList = await PostRepository.getPosts();
-    destinationList = await DestinationRepository.getDestinations();
+    hotelList = await HotelRepository.getHotels(limit: 4);
+    restaurantList = await RestaurantRepository.getRestaurants(limit: 4);
+    postList = await PostRepository.getPosts(limit: 3);
+    destinationList = await DestinationRepository.getDestinations(limit: 5);
     // currentAddress = addressList[0];
     loading = false;
   }

@@ -11,9 +11,10 @@ import 'package:travelapp/app/routes/app_pages.dart';
 
 class HotelRepository {
   static Future<List<Hotel>> getHotels(
-      {int? destinationId, String? search}) async {
+      {int? destinationId, String? search, int? limit}) async {
     var queryParams = {
       'populate': 'cover_image, album, destination',
+      'sort': 'id:desc',
     };
     if (destinationId != null) {
       queryParams = {
@@ -25,6 +26,13 @@ class HotelRepository {
       queryParams = {
         ...queryParams,
         'filters[name][\$containsi]': search,
+      };
+    }
+
+    if (limit != null) {
+      queryParams = {
+        ...queryParams,
+        'pagination[pageSize]': limit.toString(),
       };
     }
     var url = Uri.https(API_URL, '/api/hotels/', queryParams);

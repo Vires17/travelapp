@@ -12,9 +12,10 @@ import 'package:travelapp/app/routes/app_pages.dart';
 
 class PostRepository {
   static Future<List<Post>> getPosts(
-      {int? destinationId, String? search}) async {
+      {int? destinationId, String? search, int? limit}) async {
     var queryParams = {
       'populate': 'cover_image, destination',
+      'sort': 'id:desc',
     };
     if (destinationId != null) {
       queryParams = {
@@ -27,6 +28,12 @@ class PostRepository {
       queryParams = {
         ...queryParams,
         'filters[title][\$containsi]': search,
+      };
+    }
+    if (limit != null) {
+      queryParams = {
+        ...queryParams,
+        'pagination[pageSize]': limit.toString(),
       };
     }
     var url = Uri.https(API_URL, '/api/posts/', queryParams);

@@ -9,10 +9,18 @@ import 'package:travelapp/app/data/models/user.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class DestinationRepository {
-  static Future<List<Destination>> getDestinations() async {
-    final queryParams = {
+  static Future<List<Destination>> getDestinations({int? limit}) async {
+    var queryParams = {
       'populate': 'cover_image, album',
+      'sort': 'id:desc',
     };
+
+    if (limit != null) {
+      queryParams = {
+        ...queryParams,
+        'pagination[pageSize]': limit.toString(),
+      };
+    }
     var url = Uri.https(API_URL, '/api/destinations/', queryParams);
 
     var token = APP_TOKEN;
