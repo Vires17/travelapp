@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/HotelCard.dart';
-import 'package:travelapp/app/components/RestaurantCard.dart';
 import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
+import 'package:travelapp/app/modules/hotels_list/controllers/hotels_list_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
-class Restaurants extends StatelessWidget {
-  Restaurants({
+class Hotels extends StatelessWidget {
+  Hotels({
     Key? key,
   }) : super(key: key);
 
-  HomeController controller = Get.find();
+  HotelsListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,8 @@ class Restaurants extends StatelessWidget {
     return Column(
       children: [
         HeaderTitle(
-          title: "Restaurants",
-          onPressed: () {
-            Get.toNamed(Routes.RESTAURANTS_LIST);
-          },
+          title: "All Hotels",
+          hideViewMore: true,
         ),
         Obx(
           () {
@@ -36,18 +34,17 @@ class Restaurants extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 children: List.generate(
-                  controller.restaurantList.length,
+                  controller.hotelList.length,
                   (index) {
-                    return RestaurantCard(
-                      image: controller
-                          .restaurantList[index].coverImage!.originalUrl!,
-                      name: controller.restaurantList[index].name!,
-                      price:
-                          'From \$${controller.restaurantList[index].priceFrom}',
+                    return HotelCard(
+                      image:
+                          controller.hotelList[index].coverImage!.originalUrl!,
+                      name: controller.hotelList[index].name!,
+                      price: 'From \$${controller.hotelList[index].priceFrom}',
                       onPress: () {
                         Get.toNamed(
-                          Routes.RESTAURANT_DETAILS,
-                          arguments: controller.restaurantList[index],
+                          Routes.HOTEL_DETAILS,
+                          arguments: controller.hotelList[index],
                         );
                       },
                     );

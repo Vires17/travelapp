@@ -3,26 +3,22 @@ import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/PostCard.dart';
 import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
+import 'package:travelapp/app/modules/posts_list/controllers/posts_list_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
-class NewPosts extends StatelessWidget {
-  NewPosts({
+class PostList extends StatelessWidget {
+  PostList({
     Key? key,
   }) : super(key: key);
 
-  HomeController controller = Get.find();
+  PostsListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        HeaderTitle(
-          title: "New posts",
-          onPressed: () {
-            Get.toNamed(Routes.POSTS_LIST);
-          },
-        ),
+        HeaderTitle(title: "New posts"),
         Obx(() {
           return Container(
             margin: EdgeInsets.symmetric(vertical: 15),

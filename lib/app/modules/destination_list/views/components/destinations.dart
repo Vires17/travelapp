@@ -1,42 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/app/components/HeaderTitle.dart';
+import 'package:travelapp/app/modules/destination_list/controllers/destination_list_controller.dart';
 import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
-class NewIdeas extends StatelessWidget {
-  NewIdeas({
+class Destinations extends StatelessWidget {
+  Destinations({
     Key? key,
     required this.size,
   }) : super(key: key);
 
   final Size size;
-  final List<String> destinations = <String>[
-    'Hạ Long Bay',
-    'Hà Nội',
-    'Đà Nẵng'
-  ];
 
-  HomeController controller = Get.find();
+  DestinationListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         HeaderTitle(
-          title: "New ideas",
-          onPressed: () {
-            Get.toNamed(Routes.DESTINATION_LIST);
-          },
+          title: "Destinations",
+          hideViewMore: true,
         ),
         Obx(() {
           return Container(
-            margin: EdgeInsets.symmetric(vertical: 15),
-            height: size.height * 0.3,
+            padding: EdgeInsets.symmetric(vertical: 15),
             child: ListView.builder(
-              physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
-              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.destinationList.length,
               itemBuilder: (_, index) {
                 return InkWell(
@@ -45,7 +37,7 @@ class NewIdeas extends StatelessWidget {
                         arguments: controller.destinationList[index]);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                     child: Column(
                       children: [
                         ClipRRect(
@@ -53,7 +45,7 @@ class NewIdeas extends StatelessWidget {
                           child: Image.network(
                             controller.destinationList[index].coverImage!
                                 .originalUrl!,
-                            height: size.height * 0.25,
+                            width: size.width * 0.8,
                             fit: BoxFit.fill,
                             loadingBuilder: (BuildContext context, Widget child,
                                 ImageChunkEvent? loadingProgress) {

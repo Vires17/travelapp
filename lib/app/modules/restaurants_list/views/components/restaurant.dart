@@ -4,6 +4,7 @@ import 'package:travelapp/app/components/HeaderTitle.dart';
 import 'package:travelapp/app/components/HotelCard.dart';
 import 'package:travelapp/app/components/RestaurantCard.dart';
 import 'package:travelapp/app/modules/home/controllers/home_controller.dart';
+import 'package:travelapp/app/modules/restaurants_list/controllers/restaurants_list_controller.dart';
 import 'package:travelapp/app/routes/app_pages.dart';
 
 class Restaurants extends StatelessWidget {
@@ -11,7 +12,7 @@ class Restaurants extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  HomeController controller = Get.find();
+  RestaurantsListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,7 @@ class Restaurants extends StatelessWidget {
       children: [
         HeaderTitle(
           title: "Restaurants",
-          onPressed: () {
-            Get.toNamed(Routes.RESTAURANTS_LIST);
-          },
+          hideViewMore: true,
         ),
         Obx(
           () {

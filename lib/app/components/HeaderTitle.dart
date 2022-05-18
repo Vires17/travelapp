@@ -4,11 +4,13 @@ class HeaderTitle extends StatelessWidget {
   HeaderTitle({
     Key? key,
     required this.title,
+    this.onPressed,
     this.hideViewMore = false,
   }) : super(key: key);
 
   final String title;
   bool? hideViewMore;
+  GestureTapCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +34,7 @@ class HeaderTitle extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: InkWell(
-                onTap: () {
-                  //
-                },
+                onTap: onPressed,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(

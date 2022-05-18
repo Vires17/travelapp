@@ -14,6 +14,10 @@ abstract class Routes {
   static const CHATBOT = _Paths.CHATBOT;
   static const RESTAURANT_DETAILS = _Paths.RESTAURANT_DETAILS;
   static const SEARCH = _Paths.SEARCH;
+  static const DESTINATION_LIST = _Paths.DESTINATION_LIST;
+  static const POSTS_LIST = _Paths.POSTS_LIST;
+  static const HOTELS_LIST = _Paths.HOTELS_LIST;
+  static const RESTAURANTS_LIST = _Paths.RESTAURANTS_LIST;
 }
 
 abstract class _Paths {
@@ -29,4 +33,8 @@ abstract class _Paths {
   static const CHATBOT = '/chatbot';
   static const RESTAURANT_DETAILS = '/restaurant-details';
   static const SEARCH = '/search';
+  static const DESTINATION_LIST = '/destination-list';
+  static const POSTS_LIST = '/posts-list';
+  static const HOTELS_LIST = '/hotels-list';
+  static const RESTAURANTS_LIST = '/restaurants-list';
 }

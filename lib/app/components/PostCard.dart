@@ -24,7 +24,7 @@ class PostCard extends StatelessWidget {
       child: Container(
         width: size.width,
         height: 80,
-        margin: EdgeInsets.symmetric(vertical: 8),
+        margin: EdgeInsets.symmetric(vertical: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

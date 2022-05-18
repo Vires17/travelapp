@@ -21,6 +21,9 @@ class Hotels extends StatelessWidget {
       children: [
         HeaderTitle(
           title: "Hotels",
+          onPressed: () {
+            Get.toNamed(Routes.HOTELS_LIST);
+          },
         ),
         Obx(
           () {
