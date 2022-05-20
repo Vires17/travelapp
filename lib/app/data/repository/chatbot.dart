@@ -11,26 +11,25 @@ import 'package:travelapp/app/routes/app_pages.dart';
 
 class ChatBotRepository {
   static Future<ChatBot> getResponse(String message, int userId) async {
-    final queryParams = {
-      'message': message,
-      'user_id': userId.toString(),
-    };
-    var url = Uri.https(SERVER_CHATBOT_URL, '/api/chat/', queryParams);
+    var url = Uri.https(SERVER_CHATBOT_URL, '/webhooks/rest/webhook');
 
-    var token = APP_TOKEN;
     var header = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      // 'Authorization': 'Bearer $token',
     };
-    var response = await http.get(url, headers: header);
+    var body = {
+      'sender': userId.toString(),
+      'message': message,
+    };
+    var response = await http.post(url, body: json.encode(body), headers: header);
     ChatBot chatbotResponse = ChatBot(
         message:
             'The system is overloaded, please wait a moment and send the request again.',
         isMe: false);
+        print(response);
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body);
-      dynamic data = result['data'];
+      dynamic data = result[0];
       chatbotResponse = ChatBot.fromJson(data);
       return chatbotResponse;
     } else {

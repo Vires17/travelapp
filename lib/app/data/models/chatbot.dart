@@ -9,13 +9,13 @@ class ChatBot {
 
   factory ChatBot.fromJson(Map<String, dynamic> json) {
     return ChatBot(
-      message: json['response'] ?? '',
+      message: json['text'] ?? '',
       isMe: json['isMe'] ?? false,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'response': message,
+        'text': message,
         'isMe': isMe,
       };
 }
